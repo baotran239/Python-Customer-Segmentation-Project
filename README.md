@@ -38,6 +38,7 @@ import io
 #Load dataset
 df = pd.read_excel(io.BytesIO(uploaded['ecommerce retail.xlsx']))
 df
+![Image](https://github.com/user-attachments/assets/7f8050c3-d7b2-426a-8070-a2ee82e0eafb)
 
 #Load Segmentation sheet
 Segmentation = pd.read_excel(io.BytesIO(uploaded['ecommerce retail.xlsx']), sheet_name='Segmentation')

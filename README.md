@@ -199,4 +199,26 @@ plt.show()
 <img width="1216" alt="Image" src="https://github.com/user-attachments/assets/15319ee4-4584-4775-9758-d4706e247269" />
 
 ## IV. Insights
-## V. Recommendation
+- The three customer segments with the highest proportion are "New Customers", "At Risk", and "Hibernating Customers".
+
+- For the "New Customers" segment, we can implement strategies to encourage repeat purchases, such as "running ads" and "offering discounts for the next order".
+
+- A common characteristic of the remaining two segments is that they do not return to make another purchase. This could be due to product/service quality issues or other factors causing customer dissatisfaction. To address this, we can conduct surveys to identify problems and implement solutions to extend the customer lifetime value.
+
+- Additionally, we can focus on specific strategies for each customer segment, as outlined in the table in the **Recommendations** section.
+  
+## V. Recommendations
+| Segments                | Characteristics                                                                 | Recommendations                                                                                     |
+|-------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **Champions**           | - New transactions <br> - Frequent buyers <br> - Highest spenders <br> - Very loyal <br> - Generous spending <br> - Likely to buy again soon | - Take care and encourage them to return more: <br> + Offer loyalty programs with personalized benefits <br> + Recommend higher-value items and product combos based on order history |
+| **Loyal**               | - Very frequent buyers <br> - Medium to high spending                         | - Implement membership ranking strategies <br> - Introduce new products                         |
+| **Potential Loyalist**  | - New transactions <br> - Multiple purchases but not frequent <br> - Medium to high spending | - Upsell high-value products <br> - Gather feedback and implement engagement strategies         |
+| **New Customers**       | - Recently made their first purchase <br> - Infrequent buyer <br> - Low cart value | - Run ads <br> - Offer discounts for next purchase                                             |
+| **Promising**           | - Purchased recently <br> - Infrequent buyer <br> - Large purchase power      | - Run ads <br> - Implement membership programs <br> - Offer exclusive perks <br> - Recommend higher-value items and product combos |
+| **Need Attention**      | - Haven’t purchased for a while <br> - Moderate purchase frequency <br> - Low to moderate cart value | - Create limited-time promotions <br> - Suggest products based on past purchases               |
+| **About To Sleep**      | - Long time since last purchase <br> - Low purchase frequency <br> - High cart value | - Personalized interactions via email and phone <br> - Offer vouchers, discounts, and exclusive perks |
+| **At Risk**             | - Haven’t returned for a long time <br> - Used to be a frequent buyer <br> - Medium to high cart value | - Conduct surveys to identify the root cause and implement solutions                          |
+| **Cannot Lose Them**    | - Haven’t returned for a long time <br> - Used to be a frequent buyer <br> - High cart value | - Offer exclusive privileges such as early access to new products and special discounts        |
+| **Hibernating Customers** | - Very long time since last purchase <br> - Low purchase frequency <br> - Low cart value | - Personalized interactions via email and phone <br> - Offer vouchers, discounts, and exclusive perks |
+| **Lost Customers**      | - Very long time since last purchase <br> - Very low purchase frequency <br> - Behavior: Exploratory purchases, one-time buyers who compare products/services | - Implement policies for free product trials                                                  |
+

@@ -34,21 +34,32 @@ uploaded = files.upload()
 #Import libraries
 import pandas as pd
 import io
+```
 
+```sql
 #Load dataset
 df = pd.read_excel(io.BytesIO(uploaded['ecommerce retail.xlsx']))
 df
+```
 ![Image](https://github.com/user-attachments/assets/7f8050c3-d7b2-426a-8070-a2ee82e0eafb)
 
+```sql
 #Load Segmentation sheet
 Segmentation = pd.read_excel(io.BytesIO(uploaded['ecommerce retail.xlsx']), sheet_name='Segmentation')
-
+```
+```sql
 #Column information
 df.info()
+```
+<img width="1100" alt="Image" src="https://github.com/user-attachments/assets/70d24fba-6543-4f41-bbaa-fede90173d50" />
 
-#Summary statistics of the dataset
+```sql
+#Statistics summary of the dataset
 df.describe()
+```
+<img width="1100" alt="Image" src="https://github.com/user-attachments/assets/ef39622f-cdcd-4d1a-b0fb-dadc00484443" />
 
+```sql
 #Remove NaN values in the CustomerID column
 df = df.dropna(subset=['CustomerID'])
 
@@ -68,7 +79,10 @@ df2 = df1[~df1['InvoiceNo'].str.startswith('C')]
 df2['Total Price'] = df2['UnitPrice'] * df2['Quantity']
 
 df2
+```
+<img width="1232" alt="Image" src="https://github.com/user-attachments/assets/64c834c2-7250-4449-8cf7-031f334fdef8" />
 
+```sql
 #Create a new table grouped by CustomerID
 grouped_df2 = df2.groupby('CustomerID').agg(
     RecentInvoiceDate=('InvoiceDate', 'max'),
@@ -80,7 +94,10 @@ grouped_df2 = df2.groupby('CustomerID').agg(
 grouped_df2['Recency'] = (df2['InvoiceDate'].max() - grouped_df2['RecentInvoiceDate']).dt.days
 
 grouped_df2
+```
+<img width="1232" alt="Image" src="https://github.com/user-attachments/assets/0099adef-ba66-4104-a312-8b4e2c37409d" />
 
+```sql
 #Scoring
 grouped_df2['recency_qcut'] = pd.qcut(grouped_df2['Recency'], q=5, labels=False)
 grouped_df2['recency_rate'] = grouped_df2['recency_qcut'] + 1
@@ -95,7 +112,10 @@ grouped_df2['monetary_rate'] = grouped_df2['monetary_qcut'] + 1
 grouped_df2['RFM_score'] = grouped_df2['recency_rate'].astype(str) + grouped_df2['frequency_rate'].astype(str) + grouped_df2['monetary_rate'].astype(str)
 
 grouped_df2
+```
+<img width="1391" alt="Image" src="https://github.com/user-attachments/assets/cbe4c190-c4cd-4274-8549-5caef563af6c" />
 
+```sql
 import matplotlib.pyplot as plt
 
 #Count occurrences of each RFM_score value
@@ -110,30 +130,33 @@ plt.title('Frequency of RFM Score')
 plt.grid(True)
 plt.xticks(rotation=90, fontsize=5, fontweight='bold')
 plt.show()
+```
+<img width="875" alt="Image" src="https://github.com/user-attachments/assets/585e38fe-8c77-4c22-9f6f-b59a77965e2d" />
 
+```sql
 #Create a table summarizing RFM_score frequency
 rfm_frequency = grouped_df2['RFM_score'].value_counts().reset_index()
 rfm_frequency.columns = ['RFM_score', 'Frequency of RFM_score']
 rfm_frequency
+```
+<img width="1089" alt="Image" src="https://github.com/user-attachments/assets/a8faf8de-4a10-434d-a71e-b2473c656622" />
 
-Segmentation
-
+```sql
 #Split RFM Score column into individual values
 Segmentation['RFM Score'] = Segmentation['RFM Score'].str.split(', ')
 Segmentation = Segmentation.explode('RFM Score')
-
 Segmentation
+```
+<img width="1089" alt="Image" src="https://github.com/user-attachments/assets/040c9bc4-d6d4-490a-b341-2559c9f946e6" />
 
-Segmentation['RFM Score'] = Segmentation['RFM Score'].str.split(',')
-Segmentation = Segmentation.explode('RFM Score')
-
-Segmentation
-
+```sql
 #Merge grouped_df2 and Segmentation tables
 merged_df = pd.merge(grouped_df2, Segmentation, left_on='RFM_score', right_on='RFM Score', how='left')
-
 merged_df
+```
+<img width="1412" alt="Image" src="https://github.com/user-attachments/assets/28e3fded-b4e9-47db-bf8c-f3adbe069076" />
 
+```sql
 import seaborn as sns
 
 #Plot distribution of customer segments
@@ -142,27 +165,38 @@ plt.xticks(rotation=90)
 plt.ylabel('Distribution')
 plt.title('Distribution of 11 customer groups')
 plt.show()
+```
+<img width="1216" alt="Image" src="https://github.com/user-attachments/assets/74a67a95-2b46-457a-928b-d0ca28cf7715" />
 
+```sql
 #Plot distribution of Recency
 sns.distplot(merged_df['Recency'])
 plt.xlabel('Recency (days)')
 plt.ylabel('Distribution')
 plt.title('Distribution of Recency')
 plt.show()
+```
+<img width="1216" alt="Image" src="https://github.com/user-attachments/assets/9e376f6f-08b3-4897-a93a-63905dfe9138" />
 
+```sql
 #Plot distribution of Frequency
 sns.distplot(merged_df['Frequency'])
 plt.xlabel('Frequency (times)')
 plt.ylabel('Distribution')
 plt.title('Distribution of Frequency')
 plt.show()
+```
+<img width="1216" alt="Image" src="https://github.com/user-attachments/assets/5e6449f3-9ba7-44cd-8e75-ddc241d19c9f" />
 
+```sql
 #Plot distribution of Monetary Value
 sns.distplot(merged_df['MonetaryValue'])
 plt.xlabel('Monetary Value ($)')
 plt.ylabel('Distribution')
 plt.title('Distribution of Monetary Value')
 plt.show()
+```
+<img width="1216" alt="Image" src="https://github.com/user-attachments/assets/15319ee4-4584-4775-9758-d4706e247269" />
 
 ## IV. Insights
 ## V. Recommendation

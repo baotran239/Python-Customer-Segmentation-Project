@@ -1,6 +1,6 @@
 # [Python] Customer Segmentation Project
 
-## I.Introduction
+## I. Introduction
 The project leverages Python to clean, group and visualize data to divide customers into different groups based on RFM model (recency, frequency and monetary value per transaction) in order to implement the right strategies to each group.
 
 ## II. Context & Dataset
